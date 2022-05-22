@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="400" pageHeight="380" columnWidth="360" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bac236e8-ae64-441c-97c5-4f56b676e793">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="kode" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     transaksi.`kd_tiket` AS transaksi_kd_tiket,
+     transaksi.`pegawai` AS transaksi_pegawai,
+     transaksi.`tanggal` AS transaksi_tanggal,
+     transaksi.`qty_dewasa` AS transaksi_qty_dewasa,
+     transaksi.`hrg_tiket_dewasa` AS transaksi_hrg_tiket_dewasa,
+     transaksi.`qty_anak` AS transaksi_qty_anak,
+     transaksi.`hrg_tiket_anak` AS transaksi_hrg_tiket_anak,
+     transaksi.`disc member` AS transaksi_disc_member,
+     transaksi.`disc promo` AS transaksi_disc_promo,
+     transaksi.`total` AS transaksi_total
+FROM
+     `transaksi` transaksi
+WHERE
+	transaksi.kd_tiket=$P{kode}]]>
+	</queryString>
+	<field name="transaksi_kd_tiket" class="java.lang.String"/>
+	<field name="transaksi_pegawai" class="java.lang.String"/>
+	<field name="transaksi_tanggal" class="java.sql.Date"/>
+	<field name="transaksi_qty_dewasa" class="java.lang.Integer"/>
+	<field name="transaksi_hrg_tiket_dewasa" class="java.lang.Integer"/>
+	<field name="transaksi_qty_anak" class="java.lang.Integer"/>
+	<field name="transaksi_hrg_tiket_anak" class="java.lang.Integer"/>
+	<field name="transaksi_disc_member" class="java.lang.String"/>
+	<field name="transaksi_disc_promo" class="java.lang.String"/>
+	<field name="transaksi_total" class="java.lang.Integer"/>
+	<variable name="rp" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{transaksi_total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="84" y="0" width="360" height="49" uuid="0dd58962-f95c-440d-9bf8-bff23d3d0ee6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Black" size="24"/>
+				</textElement>
+				<text><![CDATA[TIKET MASUK]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="261" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Detail" x="110" y="51" width="127" height="15" uuid="5b35ef89-2599-45b4-b9af-0997766b4380"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaksi_tanggal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="142" y="121" width="55" height="15" uuid="d751ef11-bf31-4ef4-a4be-d3a38c86eacf"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaksi_qty_dewasa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="282" y="121" width="68" height="15" uuid="1655ccc4-1c27-4a58-9d1e-f4e433ac3bb3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rp."+$F{transaksi_hrg_tiket_dewasa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="142" y="147" width="55" height="15" uuid="2783587e-a2fd-4d13-ab9c-037d46b36d96"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaksi_qty_anak}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="282" y="147" width="68" height="15" uuid="4c0cbfe4-03b4-468b-9365-e1d956747eb5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rp."+$F{transaksi_hrg_tiket_anak}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0 %">
+				<reportElement style="Detail" x="295" y="174" width="55" height="15" uuid="a7c8e9d5-c47b-47a4-ab29-fac3f08eb9bc"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaksi_disc_member}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0 %">
+				<reportElement style="Detail" x="295" y="202" width="55" height="15" uuid="d8b6f3dc-2881-4ba7-a819-03cbeaf00357"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaksi_disc_promo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="282" y="237" width="68" height="15" uuid="f2813862-ef08-4dff-a12e-87dd95320d0d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rp. "+$V{rp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="36" width="84" height="15" uuid="2c8baeb9-5586-49e3-9fbb-40a25be6e173"/>
+				<text><![CDATA[Operator]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="51" width="84" height="15" uuid="46a0d202-d239-4073-ac8a-6796428340e5"/>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="121" width="84" height="15" uuid="69f10253-566e-45f1-892a-fc59b3d72766"/>
+				<text><![CDATA[Tiket Dewasa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="147" width="84" height="15" uuid="1a754212-c59b-464f-930c-43ceb24ee51f"/>
+				<text><![CDATA[Tiket Anak]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="142" y="174" width="95" height="15" uuid="108b5d53-f34a-4b6c-aab8-e02d31d84d53"/>
+				<text><![CDATA[Diskon Member]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="110" y="36" width="87" height="15" uuid="413e5bfa-2133-4c97-bc75-8ad5fe368baf"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaksi_pegawai}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="142" y="202" width="95" height="15" uuid="8ea1d909-bdc2-49e2-9234-f3744ca75f63"/>
+				<text><![CDATA[Diskon Promo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="200" y="237" width="37" height="15" uuid="708c9a77-4b8f-4311-8c10-4f93c80a6d51"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="131" y="86" width="55" height="15" uuid="72e0c914-788e-4243-839f-0d69c1d709ae"/>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="295" y="86" width="55" height="15" uuid="481b12e1-233e-4733-bd4d-215f247f7b26"/>
+				<text><![CDATA[Harga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="66" width="382" height="20" uuid="89de6492-8506-409c-b23b-cabedada25c5"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[---------------------------------------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="101" width="382" height="20" uuid="856a2ac8-b7c3-4db7-bd64-06aabca9bbea"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[-------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="21" width="84" height="15" uuid="ab5cb082-2836-4a18-afb3-4a403ed1abb8"/>
+				<text><![CDATA[Kode Tiket]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="110" y="21" width="87" height="15" uuid="e43289c8-3eff-4a9b-80e0-51252738fa08"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaksi_kd_tiket}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="217" width="382" height="20" uuid="63fcca7d-c20a-4d8d-8edb-22d0c9993781"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="97" y="21" width="100" height="20" uuid="da46728a-7f9d-4a4d-ae32-b99aca4fc62d"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="97" y="36" width="100" height="20" uuid="50596589-04c0-4d7b-a1b9-8bfa1b3457fa"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="97" y="51" width="100" height="20" uuid="f8b35dc8-958d-4d51-ad13-0de76e65eaee"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="382" height="20" uuid="204c63de-df43-46fb-b989-ee2fc24fc9dd"/>
+				<textElement>
+					<font fontName="Arial Black" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="174" width="17" height="20" uuid="5c962c39-9ba6-4bb6-bf73-5d98c65f7781"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="202" width="17" height="20" uuid="abe5a92a-aa98-4f20-9060-4a82d2ac39a8"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="237" width="17" height="20" uuid="73e5fd78-8af1-4970-af1a-70c772e26aa9"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="162" width="382" height="27" uuid="eaa66fe8-b705-4cc0-b21b-e884447cbba6"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[-------------------------------------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="86" width="100" height="20" uuid="9a0dfea5-c6bb-45c3-a875-67e229fe7712"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jenis Tiket]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="2" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

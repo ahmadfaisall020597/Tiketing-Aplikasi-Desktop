@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="84a87460-f33f-40c5-ab01-fdbbe7bd8ebf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="bln" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     pengeluaran.`Tanggal` AS pengeluaran_Tanggal,
+     pengeluaran.`Keterangan` AS pengeluaran_Keterangan,
+     pengeluaran.`Total` AS pengeluaran_Total
+FROM
+     `pengeluaran` pengeluaran
+WHERE
+month(pengeluaran.Tanggal)=$P{bln}]]>
+	</queryString>
+	<field name="pengeluaran_Tanggal" class="java.sql.Date"/>
+	<field name="pengeluaran_Keterangan" class="java.lang.String"/>
+	<field name="pengeluaran_Total" class="java.lang.Integer"/>
+	<variable name="totall" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{pengeluaran_Total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="95" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="94" width="800" height="1" uuid="46c9e75b-125c-4223-91a1-31507e2d8c36"/>
+			</line>
+			<line>
+				<reportElement x="2" y="93" width="800" height="1" uuid="fae62751-004f-415b-ba4a-097e64a45426"/>
+			</line>
+			<staticText>
+				<reportElement x="181" y="16" width="614" height="51" uuid="061e6e06-1bac-4031-b4e6-d4bd3de0c653"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="40" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN PENGELUARAN]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+				<reportElement x="40" y="0" width="141" height="93" uuid="47641770-6d26-4ccd-afe3-cadd1d39c83b"/>
+				<imageExpression><![CDATA[this.getClass().getResourceAsStream("/iReport/TD.png")]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="2" y="0" width="265" height="18" forecolor="#000000" uuid="966fa960-2c28-4828-b57b-169b7a75f17a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal Pengeluaran]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="265" y="0" width="265" height="18" forecolor="#000000" uuid="31290e21-6b06-41df-9f9b-30621086a2c9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Keterangan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="530" y="0" width="265" height="18" forecolor="#000000" uuid="7c702d00-8be0-4946-a65e-cf25cfd02c72"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Pengeluaran]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="18" width="802" height="1" uuid="08f4be09-6216-4309-9715-6cfb90b24455"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="797" height="18" uuid="689c2259-b9a0-4311-a9f3-4d091b6dcd0f"/>
+				<textField isStretchWithOverflow="true" pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="265" height="18" uuid="119e8874-91d5-4ee8-b52a-fc1d43bd4b1d"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pengeluaran_Tanggal}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="265" y="0" width="265" height="18" uuid="c07e86a2-0f9b-48c7-bbf2-c2a165454a4c"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pengeluaran_Keterangan}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="530" y="0" width="265" height="18" uuid="d28da294-b7e1-43d9-a61a-f0d4f9e1666f"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Rp. "+$F{pengeluaran_Total}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="61" splitType="Stretch">
+			<textField>
+				<reportElement x="530" y="0" width="144" height="20" uuid="36d42525-3b43-46c7-8531-9bf37cb46eb9"/>
+				<textElement>
+					<font fontName="Times New Roman" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rp. "+$V{totall}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="0" width="250" height="20" uuid="13f169fb-75a0-4ef2-a516-202dc89e727e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL PENGELUARAN / BULAN	 :]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="187" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="530" y="75" width="144" height="20" forecolor="#000000" uuid="2c4dcc92-55ed-4325-97db-c2bbfa642a7c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="494" y="75" width="62" height="20" uuid="9529c988-605b-45d6-bcc8-0df5dfbbee49"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Jakarta,]]></text>
+			</staticText>
+			<line>
+				<reportElement x="494" y="164" width="180" height="1" uuid="b7aef635-66ed-4fe9-beb2-d20ebe71b8e5"/>
+			</line>
+			<staticText>
+				<reportElement x="494" y="167" width="180" height="20" uuid="1e2f8d6f-cde0-4727-995e-a3961e7a24e8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Admin]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

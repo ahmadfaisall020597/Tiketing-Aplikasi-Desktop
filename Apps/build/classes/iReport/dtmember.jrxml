@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="efdc4cd2-4e3d-4d17-b65c-5107ab3af643">
+	<property name="ireport.zoom" value="0.7513148009015777"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     member.`no_anggota` AS member_no_anggota,
+     member.`nm_anggota` AS member_nm_anggota,
+     member.`tgl_daftar` AS member_tgl_daftar,
+     member.`tgl_berlaku` AS member_tgl_berlaku,
+     member.`no_kartu` AS member_no_kartu,
+     member.`alamat` AS member_alamat
+FROM
+     `member` member]]>
+	</queryString>
+	<field name="member_no_anggota" class="java.lang.String"/>
+	<field name="member_nm_anggota" class="java.lang.String"/>
+	<field name="member_tgl_daftar" class="java.sql.Date"/>
+	<field name="member_tgl_berlaku" class="java.sql.Date"/>
+	<field name="member_no_kartu" class="java.lang.String"/>
+	<field name="member_alamat" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="129" splitType="Stretch">
+			<line>
+				<reportElement x="-3" y="125" width="553" height="1" uuid="9b095e74-5e82-4c75-85f7-0a7dec2a90ac"/>
+			</line>
+			<staticText>
+				<reportElement x="144" y="47" width="382" height="41" uuid="f31c5ba9-1c97-485c-b10c-93a846e9877a"/>
+				<textElement>
+					<font fontName="Arial Black" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN DATA MEMBER]]></text>
+			</staticText>
+			<image>
+				<reportElement x="15" y="0" width="152" height="125" uuid="5b54c89c-cb12-451a-845a-7c7d3d005ecf"/>
+				<imageExpression><![CDATA[this.getClass().getResourceAsStream("/iReport/TD.png")]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="7" width="92" height="18" forecolor="#000000" uuid="361bb19e-7f34-4507-b276-67eb098aff5a"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nomor Anggota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="92" y="7" width="92" height="18" forecolor="#000000" uuid="f9dd4c5f-c5f6-4848-9a1d-6bcf70dd21cc"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Anggota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="184" y="7" width="92" height="18" forecolor="#000000" uuid="954ffa07-fdff-46a7-ad17-a321a79bc226"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal Daftar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="276" y="7" width="107" height="18" forecolor="#000000" uuid="f1f1020d-cb8a-4a0f-8a18-01be46dd809d"/>
+				<textElement textAlignment="Left">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal Berlaku]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="371" y="7" width="92" height="18" forecolor="#000000" uuid="4566c529-2e72-4219-8610-7558c8fcb768"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nomor Kartu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="463" y="7" width="92" height="18" forecolor="#000000" uuid="8ea97a4b-8c93-4453-bd89-58a77a611e5f"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Alamat]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="550" height="1" uuid="b8f7bc98-9d44-453d-8f7a-828321285c93"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="40ced89b-4205-474f-8523-f09f6ec126b5"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="2" y="0" width="92" height="18" uuid="61fc7d0e-a61e-46d2-a5d1-36959fc0ab5e"/>
+					<textElement textAlignment="Center">
+						<font size="13" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{member_no_anggota}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="94" y="0" width="92" height="18" uuid="63be6dad-c636-47a7-9386-7d22880f16d6"/>
+					<textElement textAlignment="Center">
+						<font size="13" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{member_nm_anggota}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Detail" positionType="Float" x="184" y="0" width="92" height="18" uuid="a214c858-c9ac-48d0-b29a-8befdb78ee27"/>
+					<textElement textAlignment="Center">
+						<font size="13" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{member_tgl_daftar}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Detail" positionType="Float" x="276" y="0" width="95" height="18" uuid="d4732937-f1a9-4bc2-ad03-66ee189e10f9"/>
+					<textElement textAlignment="Center">
+						<font size="13" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{member_tgl_berlaku}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="371" y="0" width="92" height="18" uuid="5ce13b46-5ee1-472f-b030-f1bd54269c3b"/>
+					<textElement textAlignment="Center">
+						<font size="13" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{member_no_kartu}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="463" y="0" width="92" height="18" uuid="3be73c46-c799-4cf0-bd6d-f83f2c26b8ee"/>
+					<textElement textAlignment="Center">
+						<font size="13" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{member_alamat}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="2" y="0" width="553" height="1" uuid="77098bb2-f854-4bf9-a31e-ca9fd2a69dc4"/>
+				</line>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement x="383" y="18" width="48" height="20" uuid="10a69fc3-4225-4f3a-96f0-74c24256a0a0"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Jakarta,]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="416" y="18" width="124" height="20" forecolor="#000000" uuid="94ac0f71-1e17-4d14-8240-affd95a08b32"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="383" y="99" width="157" height="1" uuid="411aba93-580e-4d30-972f-93dd6f6151f9"/>
+			</line>
+			<staticText>
+				<reportElement x="383" y="100" width="157" height="20" uuid="29062082-65ea-4706-8153-8984b1e17053"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Admin]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="72" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
